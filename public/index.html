@@ -11,30 +11,38 @@
 
     body {
       margin: 0px;
-      background: grey;
+      background: #212121;
+      overflow: hidden;
     }
 
     #render-canvas {
       position: fixed;
+      top: 0px;
+      left: 0px;
+      will-change: transform;
     }
 
     #status {
       position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      color: #EEE;
-      font-size: 24px;
-      font-family: sans;
+      left: 50%;
+      bottom: 24px;
+      width: 250px;
+      height: 5px;
+      margin-left: -125px;
+      background: rgba(255,255,255,0.15);
       z-index: 100;
-      text-align: center;
+      overflow: hidden;
+    }
+
+    #status .bar {
+      width: 0%;
+      height: 100%;
+      background: #fff;
     }
 
     #controls {
       position: fixed;
-      bottom: 8px;
+      top: 8px;
       right: 8px;
       padding: 8px;
       border-radius: 4px;
@@ -59,9 +67,9 @@
   <body>
 
     <canvas id='render-canvas'></canvas>
-    <div id='status'></div>
+    <div id='status'><div class='bar'></div></div>
     <div id='controls'>
-      <i class="material-icons" id='next'>skip_next</i>
+      <i class="material-icons" id='next'>replay</i>
       <a class="material-icons" id='download'>file_download</a>
     </div>
 

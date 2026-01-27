@@ -27,5 +27,8 @@ void main() {
   float d = clamp(dot(r, sunDir), 0.0, 1.0);
   float d2 = clamp(dot(vec3(0,1,0), sunDir), 0.0, 1.0);
   c = mix(c, c * mix(4.0, 8.0, d2), smoothstep(0.999, 0.9999, d));
+  float warm = smoothstep(-0.1, 0.6, r.y);
+  vec3 warmTint = vec3(1.12, 1.06, 0.92);
+  c *= mix(vec3(1.0), warmTint, warm * 0.65);
   gl_FragColor = vec4(c, 1);
 }

@@ -7,6 +7,7 @@ const createOrUpdateFramebuffers = require('./framebuffers');
 const createCommands = require('./commands');
 
 let cmd, tNoise, tAOSampling, chunkMesh, progressiveCmd;
+let lastSeed;
 
 async function render(regl, params) {
   const statusCallback = params.callback || function() {};
@@ -16,6 +17,10 @@ async function render(regl, params) {
   const fog = params.fog;
   const groundFog = params.groundFog;
   const groundFogAlt = params.groundFogAlt;
+  const parallax = params.parallax || { x: 0, y: 0 };
+  const parallaxStrength = params.parallaxStrength || 0;
+  const parallaxHeight = params.parallaxHeight || 0;
+  const seed = params.seed || 0;
 
   statusCallback('Compiling shaders...')
   await display();
@@ -40,13 +45,17 @@ async function render(regl, params) {
   const tAOSamplingSize = 128;
   const tAOSamplingRate = 1/100;
 
-  statusCallback('Creating AO sampling vectors...')
-  await display();
-  generateAOSamplingTexture(regl, tAOSamplingSize, tAOSamplingRate);
+  if (lastSeed !== seed) {
+    statusCallback('Creating AO sampling vectors...')
+    await display();
+    const rng = createRng(seed);
+    generateAOSamplingTexture(regl, tAOSamplingSize, tAOSamplingRate, rng);
 
-  statusCallback('Creating noise...')
-  await display();
-  generateNoiseTexture(regl, tNoiseSize);
+    statusCallback('Creating noise...')
+    await display();
+    generateNoiseTexture(regl, tNoiseSize, rng);
+    lastSeed = seed;
+  }
 
   cmd.height({
     tNoise: tNoise,
@@ -65,9 +74,15 @@ async function render(regl, params) {
     terrainHeight = pixels[0];
   });
 
-  const campos = [0, terrainHeight + params.alt, 0];
   const dirrad = params.dir/360 * Math.PI * 2;
-  const view  = mat4.lookAt([], campos, [Math.cos(dirrad), campos[1], Math.sin(dirrad)], vec3.normalize([], [0, 1, 0]));
+  const right = [Math.sin(dirrad), 0, -Math.cos(dirrad)];
+  const camOffset = [
+    right[0] * parallax.x * parallaxStrength,
+    parallax.y * parallaxHeight,
+    right[2] * parallax.x * parallaxStrength
+  ];
+  const campos = [camOffset[0], terrainHeight + params.alt + camOffset[1], camOffset[2]];
+  const view  = mat4.lookAt([], campos, [campos[0] + Math.cos(dirrad), campos[1], campos[2] + Math.sin(dirrad)], vec3.normalize([], [0, 1, 0]));
   const proj  = mat4.perspective([], fov, res.x/res.y, 1, 65536);
 
   statusCallback('Generating chunk mesh...')
@@ -286,12 +301,12 @@ class ProgressiveRenderer {
 }
 
 
-function generateNoiseTexture(regl, size) {
+function generateNoiseTexture(regl, size, rng) {
   tNoise = tNoise || regl.texture();
   let l = size * size * 2;
   let array = new Float32Array(l);
   for (let i = 0; i < l; i++) {
-    let r = Math.random() * Math.PI * 2.0;
+    let r = rng() * Math.PI * 2.0;
     array[i * 2 + 0] = Math.cos(r);
     array[i * 2 + 1] = Math.sin(r);
   }
@@ -307,14 +322,14 @@ function generateNoiseTexture(regl, size) {
 }
 
 
-function generateAOSamplingTexture(regl, size, rate) {
+function generateAOSamplingTexture(regl, size, rate, rng) {
   tAOSampling = tAOSampling || regl.texture();
   let l = size * 3;
   let array = new Float32Array(l);
   for (let i = 0; i < l; i++) {
-    let len = 1.0 * Math.log(1 - Math.random())/-rate;
-    let r = Math.random() * 2.0 * Math.PI;
-    let z = (Math.random() * 2.0) - 1.0;
+    let len = 1.0 * Math.log(1 - rng())/-rate;
+    let r = rng() * 2.0 * Math.PI;
+    let z = (rng() * 2.0) - 1.0;
     let zScale = Math.sqrt(1.0-z*z) * len;
     array[i * 3 + 0] = Math.cos(r) * zScale;
     array[i * 3 + 1] = Math.sin(r) * zScale;
@@ -374,6 +389,16 @@ function tod2sundir(tod) {
     Math.sin(phi),
     -Math.cos(phi)
   ]);
+}
+
+function createRng(seed) {
+  let t = seed >>> 0;
+  return function() {
+    t += 0x6D2B79F5;
+    let r = Math.imul(t ^ (t >>> 15), 1 | t);
+    r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
 module.exports.render = render;
