@@ -1,4 +1,4 @@
-# Mars Dunefields — Random Landscape Generator 🔴🏜️
+# Mars Snap — Random Landscape Generator 🔴🏜️
 
 <p align="center">
   <img src="https://i.ibb.co.com/rRhVQcKY/mars-snap-git-cover.jpg" width="900" alt="Mars Cover">
@@ -14,12 +14,12 @@ Generate cinematic, Mars‑like desert landscapes directly in the browser using 
 
 <table>
   <tr>
-    <td><img src="https://i.ibb.co.com/Qjbs4cJm/mars-snap-git-gallery-1.jpg" width="260" alt="Mars Preview 1"></td>
-    <td><img src="https://i.ibb.co.com/JF5RCvmq/mars-snap-git-gallery-2.jpg" width="260" alt="Mars Preview 2"></td>
+    <td><img src="https://i.ibb.co/Qjbs4cJm/mars-snap-git-gallery-1.jpg" width="260" alt="Mars Preview 1"></td>
+    <td><img src="https://i.ibb.co/JF5RCvmq/mars-snap-git-gallery-2.jpg" width="260" alt="Mars Preview 2"></td>
   </tr>
   <tr>
-    <td><img src="https://i.ibb.co.com/XZ9q4yhj/mars-snap-git-gallery-3.jpg" width="260" alt="Mars Preview 3"></td>
-    <td><img src="https://i.ibb.co.com/W4yWnJV5/mars-snap-git-gallery-4.jpg" width="260" alt="Mars Preview 4"></td>
+    <td><img src="https://i.ibb.co/XZ9q4yhj/mars-snap-git-gallery-3.jpg" width="260" alt="Mars Preview 3"></td>
+    <td><img src="https://i.ibb.co/W4yWnJV5/mars-snap-git-gallery-4.jpg" width="260" alt="Mars Preview 4"></td>
   </tr>
 </table>
 
