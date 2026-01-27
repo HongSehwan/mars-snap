@@ -4,7 +4,7 @@
   <img src="https://i.ibb.co.com/rRhVQcKY/mars-snap-git-cover.jpg" width="900" alt="Mars Cover">
 </p>
 
-Generate cinematic, Mars‑like desert landscapes directly in the browser using WebGL, GLSL, and a multi‑pass renderer. This project creates **random Martian terrains** with atmosphere, fog, shadows, and filmic lighting — all procedural and reproducible.
+Generate cinematic, Mars‑like desert landscapes directly in the browser using WebGL, GLSL, and a multi‑pass renderer. This project creates **random Martian terrains** with atmosphere, fog, shadows, and filmic lighting — all procedural and reproducible, and is **primarily designed for wallpaper generation**.
 
 > A shader‑driven Mars landscape generator for dramatic, dusty, red‑planet vistas.
 
